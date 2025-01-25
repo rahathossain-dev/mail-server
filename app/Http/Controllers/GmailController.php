@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credintial;
+use App\Models\ServerMail;
 use App\Models\User;
 use App\Services\GmailService;
 use Google\Client;
@@ -24,9 +25,8 @@ class GmailController extends Controller
 
     public function authenticate($id)
     {
-        $user = User::findOrFail($id);
-
-        $provider = new GmailService($user->id, $user->credintial);
+        $email = ServerMail::findOrFail($id);
+        $provider = new GmailService($email->id, $email->credintial);
         return redirect()->to($provider->client->createAuthUrl());
     }
 
@@ -35,16 +35,16 @@ class GmailController extends Controller
     {
         $data = json_decode($request->state);
         $code = $request->get('code');
-        $user = User::findOrFail($data->id);
-        $provider = new GmailService($user->id, $user->credintial);
+        $email = ServerMail::findOrFail($data->id);
+        $provider = new GmailService($email->id, $email->credintial);
         $accessToken = $provider->client->fetchAccessTokenWithAuthCode($code);
 
         // Store the access token securely (e.g., database or storage)
         $credintial = new Credintial();
-        $credintial->user_id = $user->id;
+        $credintial->user_id = $email->id;
         $credintial->accessToken = json_encode($accessToken);
 
         $credintial->save();
-        return redirect()->route('user.all')->with('success', 'Atuthentication Successfully');
+        return redirect()->route('server-mail.all')->with('success', 'Atuthentication Successfully');
     }
 }

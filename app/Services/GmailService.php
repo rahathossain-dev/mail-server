@@ -12,7 +12,7 @@ class GmailService
     public function __construct($userId, $credintial)
     {
         $this->client = new Client();
-        $this->client->setAuthConfig(public_path('/') . 'credential/' . $credintial);
+        $this->client->setAuthConfig(public_path('/') . 'credintial/' . $credintial);
         $this->client->addScope(Gmail::GMAIL_SEND);
         $this->client->setRedirectUri(route('callback'));
         $this->client->setAccessType('offline');

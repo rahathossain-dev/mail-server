@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credintial;
+use App\Models\ServerMail;
 use App\Models\User;
 use App\Services\GmailService;
 use Google\Service\Gmail;
@@ -13,7 +14,7 @@ class SendController extends Controller
 
     public function email()
     {
-        $users = User::all();
+        $users = ServerMail::all();
         return view('email', [
             'users' => $users
         ]);
@@ -25,7 +26,7 @@ class SendController extends Controller
             'email' => 'required|email',
             'subject' => 'required'
         ]);
-        $user = User::where('id', $request->email_list)->first();
+        $user = ServerMail::where('id', $request->email_list)->first();
 
 
         $credintial = Credintial::where('user_id', $user->id)->first();

@@ -1,3 +1,40 @@
+@include('inc.header')
+<!-- start page title -->
+<!-- <div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">Dashboard</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Upzet</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+<!-- end page title -->
+@yield('content')
+
+@include('inc.footer')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,23 +70,23 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $index => $user)
-                        <tr>
-                            <th scope="row">{{ ++$index }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @if (!(\App\Models\Credintial::where('user_id', $user->id)->first()))
-                                    <a class="badge badge-primary" href="{{ Route('authenticate', [$user->id]) }}">Give
-                                        permission</a>
-                                @else
-                                    <span class="badge badge-success">Permited</span>
-                                @endif
+                    <tr>
+                        <th scope="row">{{ ++$index }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @if (!(\App\Models\Credintial::where('user_id', $user->id)->first()))
+                            <a class="badge badge-primary" href="{{ Route('authenticate', [$user->id]) }}">Give
+                                permission</a>
+                            @else
+                            <span class="badge badge-success">Permited</span>
+                            @endif
 
-                            </td>
-                            <td>
-                                <a href="" class="btn btn-danger btn-sm">Delete</a>
-                            </td>
-                        </tr>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -70,4 +107,4 @@
 
 </body>
 
-</html>
+</html> --}}
